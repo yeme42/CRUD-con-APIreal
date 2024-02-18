@@ -25,10 +25,6 @@ export class TablaComponent implements OnInit {
 
   deleteEvent(id: any){
     this.service.delete(id).subscribe((resp)=>{
-      // this.deleteSucess();
-      // this.eventoEnviarData.emit(('Se elimino correctamente'))
-      // this.loading = true
-
     },
     (error)=>{
       console.log(error)
