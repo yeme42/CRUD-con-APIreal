@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule,Validators } from '@angular/forms';
 import { conexionService } from '../../conexio.service';
 import { TablaComponent } from '../tabla/tabla.component';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-formulario',
@@ -59,5 +60,16 @@ constructor(private fb:FormBuilder,
         console.log("estoy viene ", resp)
       })
     }
+
+    actualizar(id:any, body:any){
+      this.service.actualizar(id, body).subscribe( resp =>{
+        console.log(resp)
+      })
+
+    }
+    prueba(body:string){
+      alert("si esta llegando desde el componente tabla"+ body)
+    }
+
   }
 
