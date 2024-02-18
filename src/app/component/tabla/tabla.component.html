@@ -1,0 +1,22 @@
+<div class="container m-2">   
+    <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Localidad</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let dato of data">
+      <tr>
+        <th>{{dato.nombre}}</th>
+        <th>{{dato.apellido}}</th>
+        <th>{{dato.telefono}}</th>
+        <th>{{dato.localidad}}</th>
+        <td><i style="cursor: pointer;" (click)="deleteEvent(dato.id)" class="pi pi-trash"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
