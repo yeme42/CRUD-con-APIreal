@@ -16,6 +16,8 @@ export class FormularioComponent{
   form!:FormGroup
   editarForm: boolean = false
   datos: any = []
+  modificate: boolean = false;
+  id: any 
 
 constructor(private fb:FormBuilder,
   private service: conexionService){
@@ -34,23 +36,48 @@ constructor(private fb:FormBuilder,
     });
 }
 
+
+
+
   enviar(form:any){
     console.log("Aca tienes los datos", this.form)
-
+    const formValues = this.form.value
     let body = {
       "nombre": form.value.nombre,
       "apellido": form.value.apellido,
       "telefono": form.value.telefono,
       "localidad": form.value.localidad
     }
-    
-    this.service.agregar(body).subscribe(data =>{
+
+      body.nombre = formValues.nombre;
+      body.apellido = formValues.apellido;
+      body.telefono = formValues.telefono;
+      body.localidad = formValues.localidad;
+  
+      if(this.modificate){
+        console.log("entro al modicate")
+        this.service.actualizar(this.id, body).subscribe( resp =>{
+          console.log(resp)
+          this.valores()
+          this.modificate = false
+        
+            },
+            (error:any) =>{
+              alert("Ocurrio un error en actualizar")
+            }
+            )
+          this.form.reset()
+      }else{
+        this.service.agregar(body).subscribe(data =>{
+          this.valores()
         },
         (error:any) =>{
-          alert("hubo un error")
+          alert("Ocurrio un error al intentar agregar")
         }
         )
       this.form.reset()
+      }
+    
       
     }
 
@@ -61,14 +88,18 @@ constructor(private fb:FormBuilder,
       })
     }
 
-    actualizar(id:any, body:any){
-      this.service.actualizar(id, body).subscribe( resp =>{
-        console.log(resp)
-      })
-
-    }
-    prueba(body:string){
-      alert("si esta llegando desde el componente tabla"+ body)
+    prueba(data:any){
+      this.modificate = true
+      this.id = data.id
+      let { nombre, apellido, telefono, localidad} = data.body;
+    console.log(data.body);
+    this.form.patchValue({
+      nombre: nombre,
+      apellido: apellido,
+      telefono: telefono,
+      localidad: localidad
+    });
+      console.log("si esta llegando desde el componente tabla", data.body)
     }
 
   }

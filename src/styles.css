@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-footer {
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Times, serif ;
+    min-height: calc(100vh - (100px + 100px));
+  }
+  footer {
     position:absolute;
    margin-bottom:0;
    width:100%;

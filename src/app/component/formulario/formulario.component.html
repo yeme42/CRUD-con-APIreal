@@ -1,7 +1,4 @@
-<h1>
-    YA ESTAS EN EL FORMULARIO
-</h1>
-
+<h1 class="d-flex justify-content-center m-2" >Formulario</h1>
 <div class="container m-5">
     <form [formGroup]="form" (ngSubmit)="enviar(form)" >
         <div class="form-row">
@@ -31,4 +28,4 @@
 </div>
 <hr>
 
-<app-tabla [data]="datos" (actualizarEvento)="prueba($event)"></app-tabla>
+<app-tabla [data]="datos" (eventoEliminado)="valores()" (actualizarEvento)="prueba($event)"></app-tabla>

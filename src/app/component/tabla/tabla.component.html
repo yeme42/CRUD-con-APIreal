@@ -1,5 +1,5 @@
 <div class="container m-2">   
-    <table class="table">
+    <table class="table table-striped table-dark">
     <thead class="thead-light">
       <tr>
         <th scope="col">Nombre</th>
@@ -15,8 +15,10 @@
         <th>{{dato.apellido}}</th>
         <th>{{dato.telefono}}</th>
         <th>{{dato.localidad}}</th>
-        <td><i style="cursor: pointer;" style="color: #09f062" (click)="update(dato, dato.id)" class="pi   pi-file-edit"></i></td>
-        <td><i style="cursor: pointer;" style="color: #09f062" (click)="deleteEvent(dato.id)" class="pi pi-trash"></i></td>
+        <td>
+          <i style="color: #09f062; cursor: pointer;" (click)="update(dato, dato.id)" class="m-1 pi   pi-file-edit"></i>
+          <i style="color: #09f062; cursor: pointer;" (click)="deleteEvent(dato.id)" class=" m-1 pi pi-trash"></i>
+        </td>
       </tr>
     </tbody>
   </table>

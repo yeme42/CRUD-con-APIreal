@@ -15,6 +15,7 @@ export class TablaComponent implements OnInit {
 
   @Input() data:any = []
   @Output() actualizarEvento = new EventEmitter()
+  @Output() eventoEliminado = new EventEmitter()
 
   constructor(private service: conexionService
 ){
@@ -27,12 +28,13 @@ export class TablaComponent implements OnInit {
   }
 
 update(body:string , id:any){
-  this.actualizarEvento.emit(body)
+  this.actualizarEvento.emit({body:body, id:id})
   console.log("aqui se envio algo")
 }
 
   deleteEvent(id: any){
     this.service.delete(id).subscribe((resp)=>{
+      this.eventoEliminado.emit()
       console.log("se elimino esto ", resp)
     },
     (error)=>{
